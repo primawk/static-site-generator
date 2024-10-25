@@ -4,18 +4,19 @@ from textnode import TextNode, TextType
 
 
 class TestTextNode(unittest.TestCase):
-    def test_eq(self):   
-        node = TextNode("This is a text node", TextType.BOLD, None)
-        node2 = TextNode("This is a text node", TextType.BOLD, None)
+    def test_eq(self):
+        node = TextNode("This is a text node", TextType.BOLD)
+        node2 = TextNode("This is a text node", TextType.BOLD)
         self.assertEqual(node, node2)
 
     def test_none(self):
-        node = TextNode("This is a text node", TextType.BOLD, None)
-        self.assertIsNone(node)
+        node = TextNode("This is a text node", TextType.BOLD)
+        self.assertIsNone(node.url)
 
     def test_noneq(self):
-        node = TextNode("This is a text node", TextType.BOLD, None)
-        self.assertIsNone(node)
+        node = TextNode("This is a text node", TextType.BOLD)
+        node2 = TextNode("This is a text node", TextType.NORMAL)
+        self.assertNotEqual(node.text_type, node2.text_type)
 
 
 
