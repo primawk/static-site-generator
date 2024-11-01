@@ -1,8 +1,8 @@
 from textnode import TextNode
+from htmlnode import LeafNode
+
 
 def main():
-    dummy = TextNode('This is a text node', 'bold', 'https://www.boot.dev')
-    dummy_2 = TextNode('This is a text node', 'bold', 'https://www.boot.dev')
-    print(dummy == dummy_2)
+    LeafNode("p", "This is a paragraph of text.").to_html()
 
 main()
