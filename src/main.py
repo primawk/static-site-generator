@@ -1,8 +1,14 @@
-from textnode import TextNode
 from htmlnode import LeafNode
-
+from htmlnode import ParentNode
 
 def main():
-    LeafNode("p", "This is a paragraph of text.").to_html()
+    node = ParentNode("p",[
+        LeafNode("b", "Bold text"),
+        LeafNode(None, "Normal text"),
+        LeafNode("i", "italic text"),
+        LeafNode(None, "Normal text"),
+    ])
+
+    node.to_html()
 
 main()
