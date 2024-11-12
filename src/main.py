@@ -1,34 +1,23 @@
-from htmlnode import LeafNode
-from htmlnode import ParentNode
 from textnode import TextNode, TextType
+from split_nodes_delimiter import split_nodes_delimiter
 
 def main():
-    def text_node_to_html_node(text_node):
-        for type in TextType:
-            if text_node.text_type == type.value:
-                if text_node.text_type == 'text':
-                    return LeafNode(None, text_node.text)
-                elif text_node.text_type == 'bold':
-                    return LeafNode('b', text_node.text)
-                elif text_node.text_type == 'italic':
-                    return LeafNode('i', text_node.text)
-                elif text_node.text_type == 'code':
-                    return LeafNode('code', text_node.text)
-                elif text_node.text_type == 'link':
-                    return LeafNode('a', text_node.text, text_node.url)
-                elif text_node.text_type == 'image':
-                    return LeafNode('img', '', f'src={text_node.url} alt={text_node.text}')
-        raise Exception('Text type does not match')      
-        
-
-    node = ParentNode("p",[
-        LeafNode("b", "Bold text"),
-        LeafNode(None, "Normal text"),
-        LeafNode("i", "italic text"),
-        LeafNode(None, "Normal text"),
-    ])
-
-    test = text_node_to_html_node(TextNode('This is a text node', 'bold', 'https://www.boot.dev'))
-    node.to_html()
+    # def split_nodes_delimiter(old_nodes, delimiter, text_type):
+    #     if (old_nodes[0].text_type != TextType.TEXT):
+    #         return old_nodes
+    #     elif (delimiter not in old_nodes[0].text):
+    #         raise Exception('invalid Markdown syntax')
+    #     result = []
+    #     for index, text in enumerate(old_nodes[0].text.split(delimiter)):
+    #         if index == 1:
+    #             result.append(TextNode(text, text_type))
+    #         else:
+    #             result.append(TextNode(text, TextType.TEXT))
+    #     print(result)
+    #     return result
+            
+    node = TextNode("This is text with a `code block` word", TextType.TEXT)
+    new_nodes = split_nodes_delimiter([node], "`", TextType.CODE)
+    
 
 main()
